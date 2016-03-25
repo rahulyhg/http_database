@@ -3,6 +3,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 require_once APPPATH.'libraries/REST_Controller.php';
+require_once APPPATH.'libraries/ResourceAccess.php';
 
 class Table extends REST_Controller {
 
@@ -14,17 +15,18 @@ class Table extends REST_Controller {
     //! # $ ' ( ) * + ,  / : ; = ? @ [ ]
     public function index_get()
     {
-        //no table name,  crash out
+        //no table name, crash out
         if (!array_key_exists('name', $this->query())) {
             $this->response('Missing name query parameter', 500);
         }
 
         $table_name = urldecode($this->query('name'));
+        $result = array('name' => $table_name);
 
-        //where clause
-        if (array_key_exists('where', $this->query())) {
+        //equal clause
+        if (array_key_exists('equal', $this->query())) {
 
-            $where = urldecode($this->query('where'));
+            $where = urldecode($this->query('equal'));
             $where = str_replace('"', "", $where);
             $where = str_replace("'", "", $where);
             $w_param = array();
@@ -36,14 +38,13 @@ class Table extends REST_Controller {
                 }
             }
 
-            $this->response([
-                'data' => $this->Table_model->where($table_name, $w_param),
-            ]);
+            $result['data'] = $this->Table_model->where($table_name, $w_param);
+        }
+        else {
+            //$result['data'] = $this->Table_model->all($table_name);
+            $result['data'] = ResourceAccess::Equals();
         }
 
-        $this->response([
-            'table' => $table_name,
-            'data' => $this->Table_model->all($table_name),
-        ]);
+        $this->response($result);
     }
 }

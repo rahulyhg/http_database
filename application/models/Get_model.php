@@ -7,7 +7,7 @@ require_once APPPATH.'libraries/ResourceAccess.php';
  *
  * @author qyang
  */
-class Table_model extends CI_Model {
+class Get_model extends CI_Model {
 
     private $methods;
 
@@ -23,7 +23,7 @@ class Table_model extends CI_Model {
 
     private function registerAll() {
         $this->methods['all'] = function($method_params) {
-            $table_name = $method_params['name'];
+            $table_name = $method_params['table'];
             $query = $this->db->get($table_name);
             return $query->result_array();
         };
@@ -31,7 +31,7 @@ class Table_model extends CI_Model {
 
     private function registerWhere() {
         $this->methods['where'] = function($method_params) {
-            $table_name = $method_params['name'];
+            $table_name = $method_params['table'];
             $query_params = $method_params['query_params'];
             $query = $this->db->get_where($table_name, $query_params);
 
@@ -41,7 +41,7 @@ class Table_model extends CI_Model {
 
     private function registerLike() {
         $this->methods['like'] = function($method_params) {
-            $table_name = $method_params['name'];
+            $table_name = $method_params['table'];
             $query_params = $method_params['query_params'];
 
             $query = $this->db->like($query_params);

@@ -15,9 +15,11 @@ class ResourceAccess
         $x_www_form_urlencoded = str_replace("'", "", $x_www_form_urlencoded);
 
         foreach (explode('&', $x_www_form_urlencoded) as $chunk) {
-            $param = explode("=", $chunk);
+            $pattern = '/(=|!=|<|!<|>|!>)/';
+            $param = preg_split($pattern, $chunk, -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
+
             if ($param) {
-                $params[urldecode($param[0])] = urldecode($param[1]);
+                $params[urldecode($param[0]).' '.urldecode($param[1])] = urldecode($param[2]);
             }
         }
         return $params;

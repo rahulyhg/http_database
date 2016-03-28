@@ -20,15 +20,20 @@ class Table extends REST_Controller {
         }
 
         /*
-         * Need encoding
+         * These characters need encoding
          * ! # $ ' ( ) * + ,  / : ; = ? @ [ ]
          */
 
-        //order of precedence
+        /*
+         * Order of precedence
+         * The order of methods by precedence, a smaller array index is checked before a larger array index.
+         * 'all' should always remain at the end to be used as a fallback.
+         */
         $method_strings = ['where', 'like', 'all'];
 
         $table_name = urldecode($this->query('name'));
         $result = array('name' => $table_name);
+        $fall_back = true;
 
         foreach ($method_strings as $method) {
             if (array_key_exists($method, $this->query())) {
@@ -37,8 +42,13 @@ class Table extends REST_Controller {
                 $method_params = ['name' => $table_name, 'query_params' => $query_params];
                 $result['data'] = $this->Table_model->getResource($method, $method_params);
 
+                $fall_back = false;
                 break;
             }
+        }
+
+        if ($fall_back) {
+            $result['data'] = $this->Table_model->getResource('all', $method_params = ['name' => $table_name, 'query_params' => []]);
         }
 
         $this->response($result);

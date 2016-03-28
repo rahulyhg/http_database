@@ -25,8 +25,8 @@ API Structure (Documenting)
 ---------------------------
 
 * all rows in a table: ``
-* specific row in a table: ``
-* all rows matching a query: ``
+* where clause in a table: ``
+* like clause in a table: ``
 
 Additional Parameters (Not Yet Implemented)
 -------------------------------------------
@@ -49,6 +49,7 @@ Installation Instructions
 
 * Unzip the package.
 * Upload the CodeIgniter folders and files to your server. Normally the index.php file will be at your root.
+* Rename database.template.php with database.php.
 
 Read CodeIgniter installation instructions [here](https://codeigniter.com/user_guide/installation/index.html)
 
@@ -56,7 +57,7 @@ Database Configuration
 ----------------------
 
 CodeIgniter has a config file that lets you store your database connection values (username, password, database name, etc.).
-The config file is located at application/config/database.php.
+The config file is located at application/config/database.php (If you see database.template.php, rename database.template.php with database.php).
 You can also set database connection values for specific environments by placing database.php in the respective environment config folder.
 
 The config settings are stored in a multi-dimensional array with this prototype:

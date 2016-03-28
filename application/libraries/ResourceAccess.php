@@ -8,11 +8,18 @@
  */
 class ResourceAccess
 {
-    public static function Equals() {
+    public static function BuildParams($x_www_form_urlencoded) {
+        $params = array();
 
-        $ci =& get_instance();
-        $ci->load->model('Table_model');
+        $x_www_form_urlencoded = str_replace('"', "", $x_www_form_urlencoded);
+        $x_www_form_urlencoded = str_replace("'", "", $x_www_form_urlencoded);
 
-        return 'foo';
+        foreach (explode('&', $x_www_form_urlencoded) as $chunk) {
+            $param = explode("=", $chunk);
+            if ($param) {
+                $params[urldecode($param[0])] = urldecode($param[1]);
+            }
+        }
+        return $params;
     }
 }

@@ -83,3 +83,8 @@ defined('EXIT_USER_INPUT')     OR define('EXIT_USER_INPUT', 7); // invalid user 
 defined('EXIT_DATABASE')       OR define('EXIT_DATABASE', 8); // database error
 defined('EXIT__AUTO_MIN')      OR define('EXIT__AUTO_MIN', 9); // lowest automatically-assigned error code
 defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
+
+defined('APP_NAME') OR define('APP_NAME', 'HTTP Database');
+defined('APP_VERSION') OR define('APP_VERSION', '1.0.0_SNAPSHOT');
+defined('APP_SOURCE_LOCATION') OR define('APP_SOURCE_LOCATION', 'https://github.com/xiaoerge/http_database');
+defined('APP_DEVELOPER') OR define('APP_DEVELOPER', 'https://github.com/xiaoerge');

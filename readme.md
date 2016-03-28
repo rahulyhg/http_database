@@ -1,7 +1,7 @@
-Database to RESTful API
-=======================
+Database to REST API
+====================
 
-Read database content with RESTful APIs. Built on [CodeIgniter 3.0.6](https://github.com/bcit-ci/CodeIgniter "CodeIgniter") with [CodeIgniter Rest Server 2.7.3](https://github.com/chriskacerguis/codeigniter-restserver "CodeIgniter Rest Server")
+Read database content with REST APIs. Built on [CodeIgniter 3.0.6](https://github.com/bcit-ci/CodeIgniter "CodeIgniter") with [CodeIgniter Rest Server 2.7.3](https://github.com/chriskacerguis/codeigniter-restserver "CodeIgniter Rest Server")
 
 Format Supported
 ----------------
@@ -35,14 +35,14 @@ Additional Parameters (Not Yet Implemented)
 * `direction`: direction to sort, either `asc` or `desc` (default `asc`)
 * `limit`: number, maximum number of results to return
 
-e.g., `/[database]/[table]/[column]/[value].[format]?order_by=[column]&direction=[direction]`
+e.g., ``
 
 Requirements
 ------------
 
 * PHP
 * Database
-* PHP Data Objects (PDO) Extension
+* Database drivers (such as PDO, PostgreSQL, Oracle, ODBC)
 
 Installation Instructions
 -------------------------

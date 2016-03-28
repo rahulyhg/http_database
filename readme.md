@@ -24,9 +24,9 @@ Databases Supported
 API Structure (Documenting)
 ---------------------------
 
-* all rows in a table: `http://localhost/http_database/index.php/get?table=`
-* where clause in a table: ``
-* like clause in a table: ``
+* all rows in a table: `http://example.com/index.php/get?table=Country`
+* where clause in a table: `http://example.com/index.php/get?table=City&where="CountryCode=USA%26Population>1780000"`
+* like clause in a table: `http://example.com/index.php/get?table=City&where="CountryCode=US"`
 
 Additional Parameters (Not Yet Implemented)
 -------------------------------------------

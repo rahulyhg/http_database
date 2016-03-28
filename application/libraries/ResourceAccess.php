@@ -8,7 +8,7 @@
  */
 class ResourceAccess
 {
-    public static function BuildParams($x_www_form_urlencoded) {
+    public static function BuildParams($x_www_form_urlencoded, $possible_conditional) {
         $params = array();
 
         $x_www_form_urlencoded = str_replace('"', "", $x_www_form_urlencoded);
@@ -19,7 +19,12 @@ class ResourceAccess
             $param = preg_split($pattern, $chunk, -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
 
             if ($param) {
-                $params[urldecode($param[0]).' '.urldecode($param[1])] = urldecode($param[2]);
+                if ($possible_conditional) {
+                    $params[urldecode($param[0]).' '.urldecode($param[1])] = urldecode($param[2]);
+                }
+                else {
+                    $params[urldecode($param[0])] = urldecode($param[2]);
+                }
             }
         }
         return $params;

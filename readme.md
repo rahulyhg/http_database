@@ -50,6 +50,11 @@ Installation Instructions
 * Unzip the package.
 * Upload the CodeIgniter folders and files to your server. Normally the index.php file will be at your root.
 * Rename database.template.php with database.php.
+* (Optional step)
+
+```sh
+mysql -u username –-password=password world < sample/world.sql
+```
 
 Read CodeIgniter installation instructions [here](https://codeigniter.com/user_guide/installation/index.html)
 
@@ -68,8 +73,8 @@ $db['default'] = array(
         'dsn'   => '',
         'hostname' => 'localhost',
         'username' => 'root',
-        'password' => '',
-        'database' => 'database_name',
+        'password' => 'password',
+        'database' => 'world',
         'dbdriver' => 'mysqli',
         'dbprefix' => '',
         'pconnect' => TRUE,
@@ -90,7 +95,7 @@ $db['default'] = array(
 Some database drivers (such as PDO, PostgreSQL, Oracle, ODBC) might require a full DSN string to be provided.
 If that is the case, you should use the ‘dsn’ configuration setting, as if you’re using the driver’s underlying native PHP extension, like this:
 
-Here is a `config.php` file for a MySQL database named “inspections,” accessed with a MySQL user named “website” and a password of “s3cr3tpa55w0rd,” with MySQL running on the same server as the website, with the standard port of 3306. All tables may be accessed by *Database to API* except for “cache” and “passwords,” and among the accessible tables, the “password_hint” column may not be accessed via *Database to API*. All of this is registered to create an API named “facility-inspections”.
+Here is a `config.php` file for a MySQL database named “world,” accessed with a MySQL user named “root” and a password of “password,” with MySQL running on the same server as the website, with the standard port of 3306. All tables may be accessed by *Database to API* except for “cache” and “passwords,” and among the accessible tables, the “password_hint” column may not be accessed via *Database to API*. All of this is registered to create an API named “facility-inspections”.
 
 ```php
 

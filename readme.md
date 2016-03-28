@@ -26,7 +26,7 @@ API Structure (Documenting)
 
 * all rows in a table: `http://example.com/index.php/get?table=Country`
 * where clause in a table: `http://example.com/index.php/get?table=City&where="CountryCode=USA%26Population>1780000"`
-* like clause in a table: `http://example.com/index.php/get?table=City&where="CountryCode=US"`
+* like clause in a table: `http://example.com/index.php/get?table=City&like="CountryCode=US"`
 
 Additional Parameters (Not Yet Implemented)
 -------------------------------------------

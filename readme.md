@@ -21,12 +21,18 @@ Databases Supported
 * SQLite
 * ODBC
 
-API Structure (Documenting)
----------------------------
+API Structure (%26 in URL is encoding of ampersand)
+---------------------------------------------------
 
 * all rows in a table: `http://example.com/index.php/get?table=Country`
 * where clause in a table: `http://example.com/index.php/get?table=City&where="CountryCode=USA%26Population>1780000"`
 * like clause in a table: `http://example.com/index.php/get?table=City&like="CountryCode=US"`
+
+Special Characters
+------------------
+These characters need encoding
+! # $ ' ( ) * + ,  / : ; = ? @ [ ] [HTML URL Encoding Reference](http://www.w3schools.com/tags/ref_urlencode.asp)
+
 
 Additional Parameters (Not Yet Implemented)
 -------------------------------------------

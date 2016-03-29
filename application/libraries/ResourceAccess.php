@@ -14,6 +14,7 @@ class ResourceAccess
         $x_www_form_urlencoded = str_replace('"', "", $x_www_form_urlencoded);
         $x_www_form_urlencoded = str_replace("'", "", $x_www_form_urlencoded);
 
+        //if its $possible_conditional, this won't generate anything
         foreach (explode('&', $x_www_form_urlencoded) as $chunk) {
             $pattern = '/(=|!=|<|!<|>|!>)/';
             $param = preg_split($pattern, $chunk, -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
@@ -27,6 +28,7 @@ class ResourceAccess
                 }
             }
         }
+
         return $params;
     }
 }

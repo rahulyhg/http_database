@@ -8,7 +8,6 @@ Format Supported
 
 * JSON
 * XML
-* HTML
 
 Databases Supported
 -------------------

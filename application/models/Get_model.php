@@ -34,6 +34,7 @@ class Get_model extends CI_Model {
         $this->methods[$key] = function($method_params) {
             $table_name = $method_params[$this->getTableKey()];
             $query_params = $method_params[$this->getQueryParamKey()];
+            $query = $this->db->where($table_name, $query_params);
             $query = $this->db->get_where($table_name, $query_params);
 
             return $query->result_array();

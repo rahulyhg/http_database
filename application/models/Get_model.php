@@ -55,7 +55,11 @@ class Get_model extends CI_Model {
     }
 
     public function result_array($table_name) {
-        $query = $this->db->get($table_name);
+
+        $limit = $this->config->item('default_query_limit');
+        $offset = $this->config->item('default_query_offset');
+
+        $query = $this->db->get($table_name, $limit, $offset);
         return $query->result_array();
     }
 

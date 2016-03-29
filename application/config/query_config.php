@@ -4,6 +4,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $config['table_key'] = 'table';
 $config['query_param_key'] = 'query_params';
 
+$config['default_query_limit'] = 20;
+$config['default_query_offset'] = 0;
+
 /*
  * Order of precedence
  * The order of methods by precedence, a smaller array index is checked before a larger array index.

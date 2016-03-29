@@ -21,6 +21,7 @@ class Get_model extends CI_Model {
         $this->register_like('like');
         $this->register_not_like('not_like');
         $this->register_select('select');
+        $this->register_max('max');
     }
 
     private function register_all($key) {
@@ -60,6 +61,14 @@ class Get_model extends CI_Model {
             $query_params = $method_params[$this->getQueryParamKey()];
 
             $this->db->select($query_params);
+        };
+    }
+
+    private function register_max($key) {
+        $this->methods[$key] = function($method_params) {
+            $query_params = $method_params[$this->getQueryParamKey()];
+
+            $this->db->select_max($query_params);
         };
     }
 

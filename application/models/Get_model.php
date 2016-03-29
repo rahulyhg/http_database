@@ -67,11 +67,11 @@ class Get_model extends CI_Model {
         return $func($method_params);
     }
 
-    public function getTableKey() {
-        return 'table';
+    private function getTableKey() {
+        return $this->config->item('table_key');
     }
 
-    public function getQueryParamKey() {
-        return 'query_params';
+    private function getQueryParamKey() {
+        return $this->config->item('query_param_key');
     }
 }

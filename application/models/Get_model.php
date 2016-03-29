@@ -16,56 +16,56 @@ class Get_model extends CI_Model {
         parent::__construct();
         $this->methods = [];
 
-        $this->registerAll('all');
-        $this->registerWhere('where');
-        $this->registerLike('like');
-        $this->registerNotLike('not_like');
+        $this->register_all('all');
+        $this->register_where('where');
+        $this->register_like('like');
+        $this->register_not_like('not_like');
     }
 
-    private function registerAll($key) {
+    private function register_all($key) {
         $this->methods[$key] = function($method_params) {
-            $table_name = $method_params[$this->getTableKey()];
-            $query = $this->db->get($table_name);
-            return $query->result_array();
+            $this->db->select('*');
         };
     }
 
-    private function registerWhere($key) {
+    private function register_where($key) {
         $this->methods[$key] = function($method_params) {
-            $table_name = $method_params[$this->getTableKey()];
-            $query_params = $method_params[$this->getQueryParamKey()];
-            $query = $this->db->where($table_name, $query_params);
-            $query = $this->db->get_where($table_name, $query_params);
-
-            return $query->result_array();
-        };
-    }
-
-    private function registerLike($key) {
-        $this->methods[$key] = function($method_params) {
-            $table_name = $method_params[$this->getTableKey()];
             $query_params = $method_params[$this->getQueryParamKey()];
 
-            $query = $this->db->like($query_params);
-            $query = $query->get($table_name);
-            return $query->result_array();
+            foreach ($query_params as $p => $v) {
+                $this->db->where($p, $v);
+            }
         };
     }
 
-    private function registerNotLike($key) {
+    private function register_like($key) {
         $this->methods[$key] = function($method_params) {
-            $table_name = $method_params[$this->getTableKey()];
             $query_params = $method_params[$this->getQueryParamKey()];
 
-            $query = $this->db->not_like($query_params);
-            $query = $query->get($table_name);
-            return $query->result_array();
+            $this->db->like($query_params);
         };
     }
 
-    public function getResource($method = 'all', $method_params = []) {
+    private function register_not_like($key) {
+        $this->methods[$key] = function($method_params) {
+            $query_params = $method_params[$this->getQueryParamKey()];
+
+            $this->db->not_like($query_params);
+        };
+    }
+
+    public function result_array($table_name) {
+        $query = $this->db->get($table_name);
+        return $query->result_array();
+    }
+
+    public function last_query() {
+        return $this->db->last_query();
+    }
+
+    public function construct_query($method = 'all', $method_params = []) {
         $func = $this->methods[$method];
-        return $func($method_params);
+        $func($method_params);
     }
 
     private function getTableKey() {

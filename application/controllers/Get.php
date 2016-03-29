@@ -30,23 +30,20 @@ class Get extends REST_Controller {
 
         //build a result array
         $result = array($table_key => $table_name);
-        $fall_back = true;
 
         foreach ($level_one_queries as $query) {
             if (array_key_exists($query['method'], $this->query())) {
+
                 $x_www_form_encoded = urldecode($this->query($query['method']));
                 $query_params = ResourceAccess::BuildParams($x_www_form_encoded, $query['possible_conditional']);
-                $method_params = [$table_key => $table_name, $query_param_key => $query_params];
-                $result['data'] = $this->Get_model->getResource($query['method'], $method_params);
 
-                $fall_back = false;
-                break;
+                $method_params = [$table_key => $table_name, $query_param_key => $query_params];
+                $this->Get_model->construct_query($query['method'], $method_params);
             }
         }
 
-        if ($fall_back) {
-            $result['data'] = $this->Get_model->getResource('all', $method_params = [$table_key => $table_name, $query_param_key => []]);
-        }
+        $result['data'] = $this->Get_model->result_array($table_name);
+        $result['query'] = $this->Get_model->last_query();
 
         $this->response($result);
     }

@@ -20,6 +20,7 @@ class Get_model extends CI_Model {
         $this->register_where('where');
         $this->register_like('like');
         $this->register_not_like('not_like');
+        $this->register_select('select');
     }
 
     private function register_all($key) {
@@ -54,6 +55,14 @@ class Get_model extends CI_Model {
         };
     }
 
+    private function register_select($key) {
+        $this->methods[$key] = function($method_params) {
+            $query_params = $method_params[$this->getQueryParamKey()];
+
+            $this->db->select($query_params);
+        };
+    }
+
     public function result_array($table_name) {
 
         $limit = $this->config->item('default_query_limit');
@@ -67,7 +76,7 @@ class Get_model extends CI_Model {
         return $this->db->last_query();
     }
 
-    public function construct_query($method = 'all', $method_params = []) {
+    public function chain_query($method = 'all', $method_params = []) {
         $func = $this->methods[$method];
         $func($method_params);
     }

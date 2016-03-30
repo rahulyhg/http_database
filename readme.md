@@ -166,15 +166,11 @@ These character(s) need encoding if they are within quotes [HTML URL Encoding Re
 
     & (ampersand) eg where query, where="CountryCode=USA%26Population>=1780000"
 
+When PHP looks at `where="Name=New York&Population>100000"`, it will treat the & symbol inside quotation as a separator for HTTP parameters.
+It'll create a _GET array similar to `array('where' => '"Name=New York', 'Population' => '')`. Population is separated into another key.
+What we really wanted is having it create something like ` array('where' => '"Name=New York&Population>=1780000')`. To tell it to ignore the & symbol,
+surround the value with quotation and encode & as %26 whenever they are within quotes.
 
-Additional Parameters (Not Yet Implemented)
--------------------------------------------
-
-* `order_by`: name of column to sort by
-* `direction`: direction to sort, either `asc` or `desc` (default `asc`)
-* `limit`: number, maximum number of results to return
-
-e.g., ``
 
 Requirements
 ------------

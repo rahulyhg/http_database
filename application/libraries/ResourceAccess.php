@@ -8,7 +8,7 @@
  */
 class ResourceAccess
 {
-    public static function BuildLV1Params($x_www_form_urlencoded, $possible_conditional) {
+    public static function BuildLV1Params($x_www_form_urlencoded, $possible_conditional, $required_variable) {
         $params = array();
 
         $x_www_form_urlencoded = str_replace('"', "", $x_www_form_urlencoded);

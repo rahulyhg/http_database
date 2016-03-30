@@ -10,11 +10,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 //THE ORDER MATTERS!
 //possible_conditional => true means the parameters from the url can have comparisons operators like =, !=, >, >=, <, <!
-$level_one_queries['where'] = ['method' => 'where', 'possible_conditional' => true];
-$level_one_queries['or_where'] = ['method' => 'or_where', 'possible_conditional' => true];
-$level_one_queries['like'] = ['method' => 'like', 'possible_conditional' => false];
-$level_one_queries['not_like'] = ['method' => 'not_like', 'possible_conditional' => false];
-$level_one_queries['all'] = ['method' => 'all', 'possible_conditional' => false];
+$level_one_queries['where'] = ['method' => 'where', 'possible_conditional' => true, 'required_variable' => false];
+$level_one_queries['or_where'] = ['method' => 'or_where', 'possible_conditional' => true, 'required_variable' => false];
+$level_one_queries['where_in'] = ['method' => 'in_where', 'possible_conditional' => false, 'required_variable' => true];
+$level_one_queries['like'] = ['method' => 'like', 'possible_conditional' => false, 'required_variable' => false];
+$level_one_queries['not_like'] = ['method' => 'not_like', 'possible_conditional' => false, 'required_variable' => false];
+$level_one_queries['all'] = ['method' => 'all', 'possible_conditional' => false, 'required_variable' => false];
 
 //THE ORDER MATTERS!
 //possible_csv => true means the parameters from the url can be comma separated, eg select="v1,v2,v3"
@@ -29,6 +30,7 @@ $config['level_one_queries'] = $level_one_queries;
 $config['level_two_queries'] = $level_two_queries;
 
 $config['table_key'] = 'table';
+$config['variable_key'] = 'var';
 $config['query_param_key'] = 'query_params';
 
 $config['default_query_limit'] = 20;

@@ -17,6 +17,7 @@ class Get extends REST_Controller {
         //look in application/config/query_config.php for these keys
         $table_key = $this->config->item('table_key');
         $query_param_key = $this->config->item('query_param_key');
+        $variable = $this->config->item('variable_key');
 
         //no table name, just crash out
         if (!array_key_exists($table_key, $this->query())) {
@@ -31,7 +32,8 @@ class Get extends REST_Controller {
             if (array_key_exists($lv1['method'], $this->query())) {
 
                 $x_www_form_encoded = urldecode($this->query($lv1['method']));
-                $query_params = ResourceAccess::BuildLV1Params($x_www_form_encoded, $lv1['possible_conditional']);
+                $query_params = ResourceAccess::BuildLV1Params($x_www_form_encoded,
+                    $lv1['possible_conditional'], $lv1['required_variable']);
 
                 $method_params = [$table_key => $table_name, $query_param_key => $query_params];
                 $this->Get_model->chain_query($lv1['method'], $method_params);

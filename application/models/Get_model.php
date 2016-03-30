@@ -19,6 +19,8 @@ class Get_model extends CI_Model {
         $this->register_all('all');
         $this->register_where('where');
         $this->register_or_where('or_where');
+        $this->register_having('having');
+        $this->register_or_having('or_having');
         //$this->register_where_in('where_in');
         $this->register_like('like');
         $this->register_not_like('not_like');
@@ -53,6 +55,26 @@ class Get_model extends CI_Model {
 
             foreach ($query_params as $p => $v) {
                 $this->db->or_where($p, $v);
+            }
+        };
+    }
+
+    private function register_having($key) {
+        $this->methods[$key] = function($method_params) {
+            $query_params = $method_params[$this->get_query_param_key()];
+
+            foreach ($query_params as $p => $v) {
+                $this->db->having($p, $v);
+            }
+        };
+    }
+
+    private function register_or_having($key) {
+        $this->methods[$key] = function($method_params) {
+            $query_params = $method_params[$this->get_query_param_key()];
+
+            foreach ($query_params as $p => $v) {
+                $this->db->or_having($p, $v);
             }
         };
     }

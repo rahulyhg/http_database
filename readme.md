@@ -49,7 +49,7 @@ SELECT *:
 
     http://localhost/~xiaoerge/http_database/index.php/get?table=City
     Produces
-    SELECT * FROM Country
+    SELECT * FROM City
 
 WHERE:
 

@@ -1,7 +1,14 @@
-Database to REST API
-====================
+HTTP Database
+=============
 
-Read database content with REST APIs. Built on [CodeIgniter 3.0.6](https://github.com/bcit-ci/CodeIgniter "CodeIgniter") with [CodeIgniter Rest Server 2.7.3](https://github.com/chriskacerguis/codeigniter-restserver "CodeIgniter Rest Server")
+Read database content via HTTP.
+Built on [CodeIgniter 3.0.6](https://github.com/bcit-ci/CodeIgniter "CodeIgniter") with [CodeIgniter Rest Server 2.7.3](https://github.com/chriskacerguis/codeigniter-restserver "CodeIgniter Rest Server")
+
+How Does It Work
+================
+HTTP Database provides read-only access to database through HTTP GET methods.
+By providing the appropriate URL Parameters, the controller generates an equivalence SQL query and execute it against the database.
+The controller then returns the result in HTTP Response in either JSON or XML format.
 
 Format Supported
 ----------------
@@ -12,13 +19,15 @@ Format Supported
 Databases Supported
 -------------------
 
-* MySQL
-* MySQLi
-* MS SQL
-* Postgres
-* Oracle
-* SQLite
-* ODBC
+* MySQL (5.1+) via the mysql (deprecated), mysqli and pdo drivers
+* Oracle via the oci8 and pdo drivers
+* PostgreSQL via the postgre and pdo drivers
+* MS SQL via the mssql, sqlsrv (version 2005 and above only) and pdo drivers
+* SQLite via the sqlite (version 2), sqlite3 (version 3) and pdo drivers
+* CUBRID via the cubrid and pdo drivers
+* Interbase/Firebird via the ibase and pdo drivers
+* ODBC via the odbc and pdo drivers (you should know that ODBC is actually an abstraction layer)
+
 
 URL Queries (%26 in URL is encoding of &)
 -----------------------------------------
@@ -101,6 +110,8 @@ e.g., ``
 
 Requirements
 ------------
+
+PHP version 5.4 or newer is recommended.
 
 * PHP
 * Database

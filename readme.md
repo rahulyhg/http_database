@@ -179,7 +179,7 @@ $db['default'] = array(
 Some database drivers (such as PDO, PostgreSQL, Oracle, ODBC) might require a full DSN string to be provided.
 If that is the case, you should use the ‘dsn’ configuration setting, as if you’re using the driver’s underlying native PHP extension, like this:
 
-Here is a `config.php` file for a MySQL database named “world,” accessed with a MySQL user named “root” and a password of “password,” with MySQL running on the same server as the website, with the standard port of 3306. All tables may be accessed by *Database to API* except for “cache” and “passwords,” and among the accessible tables, the “password_hint” column may not be accessed via *Database to API*. All of this is registered to create an API named “facility-inspections”.
+Here is a `config.php` file for a MySQL database named “world,” accessed with a MySQL user named “root” and a password of “password,” with MySQL running on the same server as the website, with the standard port of 3306.
 
 ```php
 
@@ -194,9 +194,13 @@ $db['default']['dsn'] = '//localhost/XE';
 Read CodeIgniter database configuration [here](https://www.codeigniter.com/userguide3/database/configuration.html)
 
 
-License
--------
+Third-Party Licenses
+--------------------
+[CodeIgniter License ](https://github.com/bcit-ci/CodeIgniter/blob/develop/license.txt)
+[CodeIgniter Rest Server License ](https://github.com/chriskacerguis/codeigniter-restserver/blob/master/LICENSE)
 
+Licenses
+--------
 The MIT License (MIT)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:

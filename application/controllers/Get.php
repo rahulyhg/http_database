@@ -25,8 +25,10 @@ class Get extends REST_Controller {
         }
         $table_name = urldecode($this->query($table_key));
 
-        //look in application/config/query_config.php for this array
+        //look in application/config/query_config.php for these arrays
         $level_one_queries = $this->config->item('level_one_queries');
+        $level_two_queries = $this->config->item('level_two_queries');
+        $level_three_queries = $this->config->item('level_three_queries');
 
         foreach ($level_one_queries as $lv1) {
             if (array_key_exists($lv1['method'], $this->query())) {
@@ -44,18 +46,15 @@ class Get extends REST_Controller {
             }
         }
 
-        //look in application/config/query_config.php for this array
-        $level_two_queries = $this->config->item('level_two_queries');
+        foreach ($level_three_queries as $lv3) {
+            if (array_key_exists($lv3['method'], $this->query())) {
 
-        foreach ($level_two_queries as $lv2) {
-            if (array_key_exists($lv2['method'], $this->query())) {
-
-                $x_www_form_encoded = urldecode($this->query($lv2['method']));
+                $x_www_form_encoded = urldecode($this->query($lv3['method']));
                 $query_params = ResourceAccess::BuildLV2Params($x_www_form_encoded,
-                    ResourceAccess::GetFromArray($lv1['possible_csv'], false));
+                    ResourceAccess::GetFromArray($lv3['possible_csv'], false));
 
                 $method_params = [$table_key => $table_name, $query_param_key => $query_params];
-                $this->Get_model->chain_query($lv2['method'], $method_params);
+                $this->Get_model->chain_query($lv3['method'], $method_params);
             }
         }
 

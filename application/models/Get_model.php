@@ -27,6 +27,8 @@ class Get_model extends CI_Model {
         $this->register_min('min');
         $this->register_avg('avg');
         $this->register_sum('sum');
+        $this->register_group_by('group_by');
+        $this->register_distinct('distinct');
     }
 
     private function register_all($key) {
@@ -118,6 +120,20 @@ class Get_model extends CI_Model {
             $query_params = $method_params[$this->get_query_param_key()];
 
             $this->db->select_sum($query_params);
+        };
+    }
+
+    private function register_group_by($key) {
+        $this->methods[$key] = function($method_params) {
+            $query_params = $method_params[$this->get_query_param_key()];
+
+            $this->db->group_by($query_params);
+        };
+    }
+
+    private function register_distinct($key) {
+        $this->methods[$key] = function($method_params) {
+            $this->db->distinct();
         };
     }
 

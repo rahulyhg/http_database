@@ -132,7 +132,7 @@ Installation Instructions
 -------------------------
 
 * Unzip the package.
-* Upload the CodeIgniter folders and files to your server. Normally the index.php file will be at your root.
+* Upload the http_database folders and files to your server. Normally the index.php file will be at your root.
 * Rename database.template.php with database.php.
 * (Optional step)
 
@@ -145,7 +145,7 @@ Read CodeIgniter installation instructions [here](https://codeigniter.com/user_g
 Database Configuration
 ----------------------
 
-CodeIgniter has a config file that lets you store your database connection values (username, password, database name, etc.).
+HTTP Database has a config file that lets you store your database connection values (username, password, database name, etc.).
 The config file is located at application/config/database.php (If you see database.template.php, rename database.template.php with database.php).
 You can also set database connection values for specific environments by placing database.php in the respective environment config folder.
 
@@ -176,10 +176,10 @@ $db['default'] = array(
 
 ```
 
+Here is a `config.php` file for a MySQL database named “world,” accessed with a MySQL user named “root” and a password of “password,” with MySQL running on the same server as the website, with the standard port of 3306.
+
 Some database drivers (such as PDO, PostgreSQL, Oracle, ODBC) might require a full DSN string to be provided.
 If that is the case, you should use the ‘dsn’ configuration setting, as if you’re using the driver’s underlying native PHP extension, like this:
-
-Here is a `config.php` file for a MySQL database named “world,” accessed with a MySQL user named “root” and a password of “password,” with MySQL running on the same server as the website, with the standard port of 3306.
 
 ```php
 

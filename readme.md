@@ -153,8 +153,7 @@ HTTP GET XML:
 Complex Queries
 ---------------
 
-* Build complex queries by combining common queries together
-
+Build complex queries by combining common queries together
 
     Combining SELECT, WHERE, NOT LIKE, GROUP BY, ORDER BY together
     http://localhost/~xiaoerge/http_database/index.php/get?table=City&not_like=%22Name=New%22&where=%22Population%3E=100000%26CountryCode=USA%22&group_by=%22Name%22&select=%22Name,%20Population%22&order_by=%22Population,desc%22

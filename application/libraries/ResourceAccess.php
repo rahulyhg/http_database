@@ -15,7 +15,7 @@ class ResourceAccess
         $x_www_form_urlencoded = str_replace("'", "", $x_www_form_urlencoded);
 
         foreach (explode('&', $x_www_form_urlencoded) as $chunk) {
-            $pattern = '/(!=|<=|<|>=|>=|=)/';
+            $pattern = '/(!=|<=|<|>=|>|=)/';
             $param = preg_split($pattern, $chunk, -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
 
             if ($param) {

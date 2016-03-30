@@ -18,6 +18,7 @@ class Get_model extends CI_Model {
 
         $this->register_all('all');
         $this->register_where('where');
+        $this->register_or_where('or_where');
         $this->register_like('like');
         $this->register_not_like('not_like');
         $this->register_select('select');
@@ -39,6 +40,16 @@ class Get_model extends CI_Model {
 
             foreach ($query_params as $p => $v) {
                 $this->db->where($p, $v);
+            }
+        };
+    }
+
+    private function register_or_where($key) {
+        $this->methods[$key] = function($method_params) {
+            $query_params = $method_params[$this->getQueryParamKey()];
+
+            foreach ($query_params as $p => $v) {
+                $this->db->or_where($p, $v);
             }
         };
     }

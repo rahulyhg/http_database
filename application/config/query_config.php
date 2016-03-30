@@ -11,6 +11,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 //THE ORDER MATTERS!
 //possible_conditional => true means the parameters from the url can have comparisons operators like =, !=, >, >=, <, <!
 $level_one_queries['where'] = ['method' => 'where', 'possible_conditional' => true];
+$level_one_queries['or_where'] = ['method' => 'or_where', 'possible_conditional' => true];
 $level_one_queries['like'] = ['method' => 'like', 'possible_conditional' => false];
 $level_one_queries['not_like'] = ['method' => 'not_like', 'possible_conditional' => false];
 $level_one_queries['all'] = ['method' => 'all', 'possible_conditional' => false];

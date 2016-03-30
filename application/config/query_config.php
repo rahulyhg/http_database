@@ -19,6 +19,9 @@ $level_one_queries['all'] = ['method' => 'all', 'possible_conditional' => false]
 //possible_csv => true means the parameters from the url can be comma separated, eg select="v1,v2,v3"
 $level_two_queries['select'] = ['method' => 'select', 'possible_csv' => true];
 $level_two_queries['max'] = ['method' => 'max', 'possible_csv' => false];
+$level_two_queries['min'] = ['method' => 'min', 'possible_csv' => false];
+$level_two_queries['avg'] = ['method' => 'avg', 'possible_csv' => false];
+$level_two_queries['sum'] = ['method' => 'sum', 'possible_csv' => false];
 
 
 $config['level_one_queries'] = $level_one_queries;

@@ -22,6 +22,9 @@ class Get_model extends CI_Model {
         $this->register_not_like('not_like');
         $this->register_select('select');
         $this->register_max('max');
+        $this->register_min('min');
+        $this->register_avg('avg');
+        $this->register_sum('sum');
     }
 
     private function register_all($key) {
@@ -69,6 +72,30 @@ class Get_model extends CI_Model {
             $query_params = $method_params[$this->getQueryParamKey()];
 
             $this->db->select_max($query_params);
+        };
+    }
+
+    private function register_min($key) {
+        $this->methods[$key] = function($method_params) {
+            $query_params = $method_params[$this->getQueryParamKey()];
+
+            $this->db->select_min($query_params);
+        };
+    }
+
+    private function register_avg($key) {
+        $this->methods[$key] = function($method_params) {
+            $query_params = $method_params[$this->getQueryParamKey()];
+
+            $this->db->select_avg($query_params);
+        };
+    }
+
+    private function register_sum($key) {
+        $this->methods[$key] = function($method_params) {
+            $query_params = $method_params[$this->getQueryParamKey()];
+
+            $this->db->select_sum($query_params);
         };
     }
 

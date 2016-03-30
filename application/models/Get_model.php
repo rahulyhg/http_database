@@ -10,6 +10,7 @@ require_once APPPATH.'libraries/ResourceAccess.php';
 class Get_model extends CI_Model {
 
     private $methods;
+    private $limit, $offset;
 
     public function __construct()
     {
@@ -32,6 +33,8 @@ class Get_model extends CI_Model {
         $this->register_group_by('group_by');
         $this->register_distinct('distinct');
         $this->register_order_by('order_by');
+        $this->register_limit('limit');
+        $this->register_offset('offset');
     }
 
     private function register_all($key) {
@@ -174,10 +177,28 @@ class Get_model extends CI_Model {
         };
     }
 
+    private function register_limit($key) {
+        $this->methods[$key] = function($method_params) {
+            $query_params = $method_params[$this->get_query_param_key()];
+
+            $limit = $query_params[0];
+            $this->set_limit($limit);
+        };
+    }
+
+    private function register_offset($key) {
+        $this->methods[$key] = function($method_params) {
+            $query_params = $method_params[$this->get_query_param_key()];
+
+            $offset = $query_params[0];
+            $this->set_offset($offset);
+        };
+    }
+
     public function result_array($table_name) {
 
-        $limit = $this->config->item('default_query_limit');
-        $offset = $this->config->item('default_query_offset');
+        $limit = $this->get_limit();
+        $offset = $this->get_offset();
 
         $query = $this->db->get($table_name, $limit, $offset);
         return $query->result_array();
@@ -190,6 +211,28 @@ class Get_model extends CI_Model {
     public function chain_query($method = 'all', $method_params = []) {
         $func = $this->methods[$method];
         $func($method_params);
+    }
+
+    private function set_limit($limit) {
+        $this->limit = $limit;
+    }
+
+    private function get_limit() {
+        if (!isset($this->limit)) {
+            return $this->config->item('default_query_limit');
+        }
+        return $this->limit;
+    }
+
+    private function set_offset($offset) {
+        $this->offset = $offset;
+    }
+
+    private function get_offset() {
+        if (!isset($this->offset)) {
+            return $this->config->item('default_offset_limit');
+        }
+        return $this->limit;
     }
 
     private function get_table_key() {

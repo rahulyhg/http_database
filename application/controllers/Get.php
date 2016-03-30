@@ -46,7 +46,7 @@ class Get extends REST_Controller {
             if (array_key_exists($lv3['method'], $this->query())) {
 
                 $x_www_form_encoded = urldecode($this->query($lv3['method']));
-                $query_params = ResourceAccess::BuildLV2Params($x_www_form_encoded,
+                $query_params = ResourceAccess::BuildLV3Params($x_www_form_encoded,
                     ResourceAccess::GetFromArray($lv3['possible_csv'], false));
 
                 $method_params = [$table_key => $table_name, $query_param_key => $query_params];

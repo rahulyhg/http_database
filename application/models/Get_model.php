@@ -208,6 +208,12 @@ class Get_model extends CI_Model {
         return $this->db->last_query();
     }
 
+    //not working
+    public function count_all_results($table_name) {
+        $this->db->from($table_name);
+        return $this->db->count_all_results();
+    }
+
     public function chain_query($method = 'all', $method_params = []) {
         $func = $this->methods[$method];
         $func($method_params);

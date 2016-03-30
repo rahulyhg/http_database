@@ -15,11 +15,11 @@ Why It's Awesome
 
 * Almost zero configuration
 * Works in common web hosting
-* Scale and light weight
+* Fast and light weight
 * Robust queries
 * Chain queries
-* Authenticated access
-* API Key based access
+* Authentication
+* API Key access
 * Built on [CodeIgniter 3.0.6](https://github.com/bcit-ci/CodeIgniter "CodeIgniter")
 * With [CodeIgniter Rest Server 2.7.3](https://github.com/chriskacerguis/codeigniter-restserver "CodeIgniter Rest Server")
 

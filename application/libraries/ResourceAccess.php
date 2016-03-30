@@ -35,7 +35,7 @@ class ResourceAccess
         $x_www_form_urlencoded = str_replace('"', "", $x_www_form_urlencoded);
         $x_www_form_urlencoded = str_replace("'", "", $x_www_form_urlencoded);
 
-        return $params = $x_www_form_urlencoded;
+        return $params = explode(',', $x_www_form_urlencoded);
     }
 
     public static function GetFromArray(&$var, $default=null) {

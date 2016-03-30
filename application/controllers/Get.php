@@ -37,10 +37,6 @@ class Get extends REST_Controller {
                 $query_params = ResourceAccess::BuildLV1Params($x_www_form_encoded,
                     ResourceAccess::GetFromArray($lv1['possible_conditional'], false));
 
-                if ((ResourceAccess::GetFromArray($lv1['required_variable'], false)) == true) {
-                    $query_params[$variable] = $this->query($variable);
-                }
-
                 $method_params = [$table_key => $table_name, $query_param_key => $query_params];
                 $this->Get_model->chain_query($lv1['method'], $method_params);
             }

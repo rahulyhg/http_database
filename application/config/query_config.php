@@ -29,6 +29,7 @@ $level_three_queries['avg'] = ['method' => 'avg'];
 $level_three_queries['sum'] = ['method' => 'sum'];
 $level_three_queries['group_by'] = ['method' => 'group_by', 'possible_csv' => true];
 $level_three_queries['distinct'] = ['method' => 'distinct'];
+$level_three_queries['order_by'] = ['method' => 'order_by', 'possible_csv' => true];
 
 
 $config['level_one_queries'] = $level_one_queries;

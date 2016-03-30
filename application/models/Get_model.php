@@ -31,6 +31,7 @@ class Get_model extends CI_Model {
         $this->register_sum('sum');
         $this->register_group_by('group_by');
         $this->register_distinct('distinct');
+        $this->register_order_by('order_by');
     }
 
     private function register_all($key) {
@@ -117,7 +118,7 @@ class Get_model extends CI_Model {
         $this->methods[$key] = function($method_params) {
             $query_params = $method_params[$this->get_query_param_key()];
 
-            $this->db->select_max($query_params);
+            $this->db->select_max($query_params[0]);
         };
     }
 
@@ -125,7 +126,7 @@ class Get_model extends CI_Model {
         $this->methods[$key] = function($method_params) {
             $query_params = $method_params[$this->get_query_param_key()];
 
-            $this->db->select_min($query_params);
+            $this->db->select_min($query_params[0]);
         };
     }
 
@@ -133,7 +134,7 @@ class Get_model extends CI_Model {
         $this->methods[$key] = function($method_params) {
             $query_params = $method_params[$this->get_query_param_key()];
 
-            $this->db->select_avg($query_params);
+            $this->db->select_avg($query_params[0]);
         };
     }
 
@@ -141,7 +142,7 @@ class Get_model extends CI_Model {
         $this->methods[$key] = function($method_params) {
             $query_params = $method_params[$this->get_query_param_key()];
 
-            $this->db->select_sum($query_params);
+            $this->db->select_sum($query_params[0]);
         };
     }
 
@@ -156,6 +157,20 @@ class Get_model extends CI_Model {
     private function register_distinct($key) {
         $this->methods[$key] = function($method_params) {
             $this->db->distinct();
+        };
+    }
+
+    //$this->db->order_by("title", "desc");
+    private function register_order_by($key) {
+        $this->methods[$key] = function($method_params) {
+            $query_params = $method_params[$this->get_query_param_key()];
+
+            for ($i = 0; $i < count($query_params)-1; $i++) {
+                $var = $query_params[$i];
+                $i++;
+                $order = $query_params[$i];
+                $this->db->order_by($var, $order);
+            }
         };
     }
 

@@ -2,13 +2,24 @@ HTTP Database
 =============
 
 Read database content via HTTP.
-Built on [CodeIgniter 3.0.6](https://github.com/bcit-ci/CodeIgniter "CodeIgniter") with [CodeIgniter Rest Server 2.7.3](https://github.com/chriskacerguis/codeigniter-restserver "CodeIgniter Rest Server")
 
 How Does It Work
-================
+----------------
+
 HTTP Database provides read-only access to database through HTTP GET methods.
 By providing the appropriate URL Parameters, the controller generates an equivalence SQL query and execute it against the database.
 The controller then returns the result in HTTP Response in either JSON or XML format.
+
+Why It's Awesome
+----------------
+
+* Almost zero configuration
+* Works in common web hosting
+* Scale and light weight
+* Robust queries
+* Chain queries
+* Built on [CodeIgniter 3.0.6](https://github.com/bcit-ci/CodeIgniter "CodeIgniter")
+* With [CodeIgniter Rest Server 2.7.3](https://github.com/chriskacerguis/codeigniter-restserver "CodeIgniter Rest Server")
 
 Format Supported
 ----------------

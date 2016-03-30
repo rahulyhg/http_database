@@ -10,20 +10,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 //THE ORDER MATTERS!
 //possible_conditional => true means the parameters from the url can have comparisons operators like =, !=, >, >=, <, <!
-$level_one_queries['where'] = ['method' => 'where', 'possible_conditional' => true, 'required_variable' => false];
-$level_one_queries['or_where'] = ['method' => 'or_where', 'possible_conditional' => true, 'required_variable' => false];
-$level_one_queries['where_in'] = ['method' => 'in_where', 'possible_conditional' => false, 'required_variable' => true];
-$level_one_queries['like'] = ['method' => 'like', 'possible_conditional' => false, 'required_variable' => false];
-$level_one_queries['not_like'] = ['method' => 'not_like', 'possible_conditional' => false, 'required_variable' => false];
-$level_one_queries['all'] = ['method' => 'all', 'possible_conditional' => false, 'required_variable' => false];
+$level_one_queries['where'] = ['method' => 'where', 'possible_conditional' => true];
+$level_one_queries['or_where'] = ['method' => 'or_where', 'possible_conditional' => true];
+$level_one_queries['like'] = ['method' => 'like'];
+$level_one_queries['not_like'] = ['method' => 'not_like'];
+$level_one_queries['all'] = ['method' => 'all'];
 
 //THE ORDER MATTERS!
 //possible_csv => true means the parameters from the url can be comma separated, eg select="v1,v2,v3"
 $level_two_queries['select'] = ['method' => 'select', 'possible_csv' => true];
-$level_two_queries['max'] = ['method' => 'max', 'possible_csv' => false];
-$level_two_queries['min'] = ['method' => 'min', 'possible_csv' => false];
-$level_two_queries['avg'] = ['method' => 'avg', 'possible_csv' => false];
-$level_two_queries['sum'] = ['method' => 'sum', 'possible_csv' => false];
+$level_two_queries['max'] = ['method' => 'max'];
+$level_two_queries['min'] = ['method' => 'min'];
+$level_two_queries['avg'] = ['method' => 'avg'];
+$level_two_queries['sum'] = ['method' => 'sum'];
 
 
 $config['level_one_queries'] = $level_one_queries;

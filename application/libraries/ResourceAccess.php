@@ -8,7 +8,7 @@
  */
 class ResourceAccess
 {
-    public static function BuildLV1Params($x_www_form_urlencoded, $possible_conditional, $required_variable) {
+    public static function BuildLV1Params($x_www_form_urlencoded, $possible_conditional) {
         $params = array();
 
         $x_www_form_urlencoded = str_replace('"', "", $x_www_form_urlencoded);
@@ -36,5 +36,9 @@ class ResourceAccess
         $x_www_form_urlencoded = str_replace("'", "", $x_www_form_urlencoded);
 
         return $params = $x_www_form_urlencoded;
+    }
+
+    public static function GetFromArray(&$var, $default=null) {
+        return isset($var) ? $var : $default;
     }
 }

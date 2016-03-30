@@ -19,7 +19,7 @@ class Get_model extends CI_Model {
         $this->register_all('all');
         $this->register_where('where');
         $this->register_or_where('or_where');
-        $this->register_where_in('where_in');
+        //$this->register_where_in('where_in');
         $this->register_like('like');
         $this->register_not_like('not_like');
         $this->register_select('select');
@@ -55,6 +55,7 @@ class Get_model extends CI_Model {
         };
     }
 
+    //does not work yet
     private function register_where_in($key) {
         $this->methods[$key] = function($method_params) {
             $query_params = $method_params[$this->get_query_param_key()];

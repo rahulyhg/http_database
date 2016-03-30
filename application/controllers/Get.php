@@ -33,7 +33,11 @@ class Get extends REST_Controller {
 
                 $x_www_form_encoded = urldecode($this->query($lv1['method']));
                 $query_params = ResourceAccess::BuildLV1Params($x_www_form_encoded,
-                    $lv1['possible_conditional'], $lv1['required_variable']);
+                    ResourceAccess::GetFromArray($lv1['possible_conditional'], false));
+
+                if ((ResourceAccess::GetFromArray($lv1['required_variable'], false)) == true) {
+                    $query_params[$variable] = $this->query($variable);
+                }
 
                 $method_params = [$table_key => $table_name, $query_param_key => $query_params];
                 $this->Get_model->chain_query($lv1['method'], $method_params);
@@ -47,7 +51,8 @@ class Get extends REST_Controller {
             if (array_key_exists($lv2['method'], $this->query())) {
 
                 $x_www_form_encoded = urldecode($this->query($lv2['method']));
-                $query_params = ResourceAccess::BuildLV2Params($x_www_form_encoded, $lv2['possible_csv']);
+                $query_params = ResourceAccess::BuildLV2Params($x_www_form_encoded,
+                    ResourceAccess::GetFromArray($lv1['possible_csv'], false));
 
                 $method_params = [$table_key => $table_name, $query_param_key => $query_params];
                 $this->Get_model->chain_query($lv2['method'], $method_params);

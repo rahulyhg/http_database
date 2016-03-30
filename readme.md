@@ -20,18 +20,74 @@ Databases Supported
 * SQLite
 * ODBC
 
-API Structure (%26 in URL is encoding of ampersand)
----------------------------------------------------
+URL Queries (%26 in URL is encoding of &)
+-----------------------------------------
 
-* all rows in a table: `http://example.com/index.php/get?table=Country`
-* where clause in a table: `http://example.com/index.php/get?table=City&where="CountryCode=USA%26Population>1780000"`
-* like clause in a table: `http://example.com/index.php/get?table=City&like="CountryCode=US"`
-* api with different format `http://example.com/index.php/get?table=Country&format=xml` `http://example.com/index.php/get?table=City&like="CountryCode=US"&format=json`
+Get all rows in a table:
+
+    http://example.com/index.php/get?table=Country
+    Produces
+    SELECT * FROM Country
+
+Get rows with where condition:
+
+    http://example.com/index.php/get?table=City&where="CountryCode=USA%26Population>1780000"
+    Produces
+    SELECT * FROM City WHERE CountryCode = USA AND Population > 1780000
+
+Get rows with like condition:
+
+    http://example.com/index.php/get?table=City&like="CountryCode=US"
+    Produces
+    SELECT * FROM City WHERE CountryCode = %US%
+
+Get rows by table column name(s)
+
+    http://localhost/~xiaoerge/http_database/index.php/get?table=City&select="Name,District"&where="Id=2"
+    Produces
+    SELECT Name, District FROM City WHERE Id = 2
+
+Get max in rows:
+
+    http://localhost/~xiaoerge/http_database/index.php/get?table=City&max=Population
+    Produces
+    SELECT MAX(Population) FROM City
+
+Get min in rows:
+
+    http://localhost/~xiaoerge/http_database/index.php/get?table=City&min=Population
+    Produces
+    SELECT MIN(Population) FROM City
+
+Get avg in rows:
+
+    http://localhost/~xiaoerge/http_database/index.php/get?table=City&avg=Population
+    Produces
+    SELECT AVG(Population) FROM City
+
+Get sum in rows:
+
+    http://localhost/~xiaoerge/http_database/index.php/get?table=City&sum=Population
+    Produces
+    SELECT SUM(Population) FROM City
+
+
+Get rows in json (json is default)
+
+    http://example.com/http_database/index.php/get?table=City&where="CountryCode=USA%26Population>=1780000"
+    http://example.com/http_database/index.php/get?table=City&where="CountryCode=USA%26Population>=1780000"&format=json
+
+
+Get rows in xml
+
+    http://example.com/http_database/index.php/get?table=City&where="CountryCode=USA%26Population>=1780000"&format=xml
+
 
 Special Characters
 ------------------
-These characters need encoding
-! # $ ' ( ) * + ,  / : ; = ? @ [ ] [HTML URL Encoding Reference](http://www.w3schools.com/tags/ref_urlencode.asp)
+These character(s) need encoding if they are within quotes [HTML URL Encoding Reference](http://www.w3schools.com/tags/ref_urlencode.asp)
+
+    & (ampersand) eg where query, where="CountryCode=USA%26Population>=1780000"
 
 
 Additional Parameters (Not Yet Implemented)

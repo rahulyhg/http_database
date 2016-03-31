@@ -17,6 +17,7 @@ $level_one_queries['or_having'] = ['method' => 'or_having', 'possible_conditiona
 $level_one_queries['like'] = ['method' => 'like'];
 $level_one_queries['or_like'] = ['method' => 'or_like'];
 $level_one_queries['not_like'] = ['method' => 'not_like'];
+$level_one_queries['or_not_like'] = ['method' => 'not_like'];
 $level_one_queries['all'] = ['method' => 'all'];
 
 $level_two_queries['where_in'] = ['method' => 'where_in', 'required_variable' => true];
@@ -24,9 +25,6 @@ $level_two_queries['or_where_in'] = ['method' => 'or_where_in', 'required_variab
 $level_two_queries['where_not_in'] = ['method' => 'where_not_in', 'required_variable' => true];
 $level_two_queries['or_where_not_in'] = ['method' => 'or_where_not_in', 'required_variable' => true];
 
-//not yet implemented
-$level_two_queries['or_like'] = ['method' => 'or_like', 'required_variable' => true];
-$level_two_queries['or_not_like'] = ['method' => 'or_not_like', 'required_variable' => true];
 $level_two_queries['join'] = ['method' => 'join', 'required_variable' => true];
 
 //THE ORDER MATTERS!

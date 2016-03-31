@@ -29,6 +29,7 @@ class Get_model extends CI_Model {
         $this->register_like('like');
         $this->register_or_like('or_like');
         $this->register_not_like('not_like');
+        $this->register_or_not_like('or_not_like');
         $this->register_select('select');
         $this->register_max('max');
         $this->register_min('min');
@@ -145,6 +146,14 @@ class Get_model extends CI_Model {
             $query_params = $method_params[$this->get_query_param_key()];
 
             $this->db->not_like($query_params);
+        };
+    }
+
+    private function register_or_not_like($key) {
+        $this->methods[$key] = function($method_params) {
+            $query_params = $method_params[$this->get_query_param_key()];
+
+            $this->db->or_not_like($query_params);
         };
     }
 

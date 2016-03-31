@@ -15,6 +15,7 @@ $level_one_queries['or_where'] = ['method' => 'or_where', 'possible_conditional'
 $level_one_queries['having'] = ['method' => 'having', 'possible_conditional' => true];
 $level_one_queries['or_having'] = ['method' => 'or_having', 'possible_conditional' => true];
 $level_one_queries['like'] = ['method' => 'like'];
+$level_one_queries['or_like'] = ['method' => 'or_like'];
 $level_one_queries['not_like'] = ['method' => 'not_like'];
 $level_one_queries['all'] = ['method' => 'all'];
 

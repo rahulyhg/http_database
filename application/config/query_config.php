@@ -46,7 +46,7 @@ $config['level_two_queries'] = $level_two_queries;
 $config['level_three_queries'] = $level_three_queries;
 
 $config['table_key'] = 'table';
-$config['variable_key'] = 'var';
+$config['variable_key'] = 'variable';
 $config['query_param_key'] = 'query_params';
 
 $config['default_query_limit'] = 20;

@@ -42,6 +42,19 @@ class Get extends REST_Controller {
             }
         }
 
+        foreach ($level_two_queries as $lv2) {
+            if (array_key_exists($lv2['method'], $this->query())) {
+
+                $x_www_form_encoded = urldecode($this->query($lv2['method']));
+                $query_params = ResourceAccess::BuildLV2Params($x_www_form_encoded,
+                    ResourceAccess::GetFromArray($lv2['required_variable'], false));
+
+                $method_params = [$table_key => $table_name, $query_param_key => $query_params,
+                    $variable => $this->query($variable)];
+                $this->Get_model->chain_query($lv2['method'], $method_params);
+            }
+        }
+
         foreach ($level_three_queries as $lv3) {
             if (array_key_exists($lv3['method'], $this->query())) {
 

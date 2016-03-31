@@ -22,7 +22,7 @@ class Get_model extends CI_Model {
         $this->register_or_where('or_where');
         $this->register_having('having');
         $this->register_or_having('or_having');
-        //$this->register_where_in('where_in');
+        $this->register_where_in('where_in');
         $this->register_like('like');
         $this->register_not_like('not_like');
         $this->register_select('select');

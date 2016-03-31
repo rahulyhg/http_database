@@ -31,6 +31,12 @@ class ResourceAccess
         return $params;
     }
 
+    public static function BuildLV2Params($x_www_form_urlencoded, $required_csv) {
+
+        return $params = explode(',', $x_www_form_urlencoded);
+    }
+
+
     public static function BuildLV3Params($x_www_form_urlencoded, $possible_csv) {
         $x_www_form_urlencoded = str_replace('"', "", $x_www_form_urlencoded);
         $x_www_form_urlencoded = str_replace("'", "", $x_www_form_urlencoded);

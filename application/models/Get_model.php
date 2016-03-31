@@ -24,6 +24,7 @@ class Get_model extends CI_Model {
         $this->register_or_having('or_having');
         $this->register_where_in('where_in');
         $this->register_or_where_in('or_where_in');
+        $this->register_or_where_not_in('or_where_not_in');
         $this->register_where_not_in('where_not_in');
         $this->register_like('like');
         $this->register_not_like('not_like');
@@ -102,6 +103,16 @@ class Get_model extends CI_Model {
             $this->db->or_where_in($variable, $query_params);
         };
     }
+
+    private function register_or_where_not_in($key) {
+        $this->methods[$key] = function($method_params) {
+            $query_params = $method_params[$this->get_query_param_key()];
+            $variable = $method_params[$this->get_variable_key()];
+
+            $this->db->or_where_not_in($variable, $query_params);
+        };
+    }
+
 
     private function register_where_not_in($key) {
         $this->methods[$key] = function($method_params) {

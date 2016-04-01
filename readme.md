@@ -218,21 +218,22 @@ Build complex queries by combining common queries together
     Produces
     SELECT Code, Name FROM Country RIGHT OUTER JOIN CountryLanguage ON CountryLanguage.CountryCode = Country.Code WHERE Code = USA ORDER BY Code ASC LIMIT 1, 1
 
-Special Characters
-------------------
+When to Encode Characters
+-------------------------
 These character(s) need encoding if they are in expressions
 
 
-    '& = ! < >
+    & = ! < >
     eg, where=CountryCode=USA%26Population%3E%3D1780000
 
 
 [HTML URL Encoding Reference](http://www.w3schools.com/tags/ref_urlencode.asp)
 
-When PHP looks at `where=Name=New York&Population%3E100000`, it will treat the & symbol inside quotation as a separator for HTTP parameters.
+When PHP looks at `where=Name=New York&Population>100000`, it will treat the & symbol as a separator for HTTP parameters.
 It'll create a _GET array similar to `array('where' => '"Name=New York', 'Population' => '')`. Population is separated into another key.
 What we really wanted is having it create something like ` array('where' => '"Name=New York&Population>=1780000')`. To tell it to ignore the & symbol,
-surround the value with quotation and encode & as %26.
+encode & as %26.
+To avoid weirdness inside the condition, encode special characters like & = ! < >
 
 Authentication
 --------------

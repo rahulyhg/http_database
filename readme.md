@@ -212,6 +212,11 @@ Build complex queries by combining common queries together
     Produces
     SELECT Name, Population FROM City WHERE Population >= 10000 AND CountryCode = USA AND Name NOT LIKE %New% GROUP BY Name ORDER BY Population DESC
 
+    Combining SELECT, WHERE, JOIN, ORDER BY
+    http://localhost/~xiaoerge/http_database/index.php/get?table=Country&select=Code,Name&where=Code%3DUSA&join=CountryLanguage.CountryCode%20=%20Country.Code&variable=CountryLanguage&join_type=right%20outer&order_by=Code,asc&limit=1&offset=1
+    Produces
+    SELECT Code, Name FROM Country RIGHT OUTER JOIN CountryLanguage ON CountryLanguage.CountryCode = Country.Code WHERE Code = USA ORDER BY Code ASC LIMIT 1, 1
+
 Special Characters
 ------------------
 These character(s) need encoding if they are in expressions

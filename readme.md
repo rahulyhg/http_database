@@ -55,31 +55,31 @@ SELECT *:
 
 WHERE:
 
-    http://localhost/~xiaoerge/http_database/index.php/get?table=City&where=%22CountryCode=USA%26Population%3E1780000%22
+    http://localhost/~xiaoerge/http_database/index.php/get?table=City&where=CountryCode%3DUSA%26Population%3E1780000
     Produces
     SELECT * FROM City WHERE CountryCode = USA AND Population > 1780000
 
 OR WHERE (Identical of WHERE, except that multiple instances are joined by OR):
 
-    http://localhost/~xiaoerge/http_database/index.php/get?table=City&or_where=%22Name!=New%20York%26CountryCode=USA%26Population%3E=1780000%22
+    http://localhost/~xiaoerge/http_database/index.php/get?table=City&or_where=Name%21%3DNew%20York%26CountryCode%3DUSA%26Population%3E%3D1780000
     Produces
     SELECT * FROM City WHERE NAME != New York OR CountryCode = USA OR Population >= 1780000
 
 LIKE:
 
-    http://localhost/~xiaoerge/http_database/index.php/get?table=City&like=%22CountryCode=US%22
+    http://localhost/~xiaoerge/http_database/index.php/get?table=City&like=CountryCode%3DUS
     Produces
     SELECT * FROM City WHERE CountryCode = %US%
 
 NOT LIKE: (Identical to LIKE, except that it generates NOT LIKE statements):
 
-    http://localhost/~xiaoerge/http_database/index.php/get?table=City&not_like=%22CountryCode=US%22
+    http://localhost/~xiaoerge/http_database/index.php/get?table=City&not_like=CountryCode%3DUS
     Produces
     SELECT * FROM City WHERE CountryCode != %US%
 
 SELECT (Field1, Field2):
 
-    http://localhost/~xiaoerge/http_database/index.php/get?table=City&select=%22Name,District%22&where=%22Id=2%22
+    http://localhost/~xiaoerge/http_database/index.php/get?table=City&select=Name,District&where=Id%3D2
     Produces
     SELECT Name, District FROM City WHERE Id = 2
 
@@ -109,37 +109,37 @@ SUM(Field):
 
 GROUP BY:
 
-    http://localhost/~xiaoerge/http_database/index.php/get?table=City&where=%22CountryCode=USA%26Population%3E=178000%22&like=%22Name=New%22&group_by=Population
+    http://localhost/~xiaoerge/http_database/index.php/get?table=City&where=CountryCode%3DUSA%26Population%3E%3D178000&like=Name%3DNew&group_by=Population
     Produces
     SELECT FROM City WHERE CountryCode = USA AND Population >= 178000 AND  Name LIKE %New% GROUP BY Population
 
 DISTINCT:
 
-    http://localhost/~xiaoerge/http_database/index.php/get?table=City&where=%22CountryCode=USA%22&distinct
+    http://localhost/~xiaoerge/http_database/index.php/get?table=City&where=CountryCode%3DUSA&distinct
     Produces
     SELECT DISTINCT FROM City Where CountryCode = USA
 
 HAVING:
 
-    http://localhost/~xiaoerge/http_database/index.php/get?table=City&group_by=%22District%22&having=%22ID%3C=909%26Population!=111700%22
+    http://localhost/~xiaoerge/http_database/index.php/get?table=City&group_by=District&having=ID%3C%3D909%26Population%21%3D111700
     Produces
     SELECT FROM City GROUP BY District HAVING ID <= 909 AND Population != 111700
 
 OR HAVING (Identical of HAVING, except that multiple instances are joined by OR:):
 
-    http://localhost/~xiaoerge/http_database/index.php/get?table=City&group_by=%22District%22&or_having=%22ID%3C=909%26Population!=111700%22
+    http://localhost/~xiaoerge/http_database/index.php/get?table=City&group_by=District&or_having=ID%3C%3D909%26Population%21%3D111700
     Produces
     SELECT FROM City GROUP BY District HAVING ID <= 909 OR Population != 111700
 
 ORDER BY (asc, desc random):
 
-    http://localhost/~xiaoerge/http_database/index.php/get?table=City&order_by=%22ID,asc,Name,desc%22
+    http://localhost/~xiaoerge/http_database/index.php/get?table=City&order_by=ID,asc,Name,desc
     Produces
     SELECT * FROM City ORDER BY ID ASC, NAME DESC
 
 LIMIT, OFFSET (Default 20, 0):
 
-    http://localhost/~xiaoerge/http_database/index.php/get?table=City&group_by=%22District%22&having=%22ID%3C=909%26Population!=111700%22&order_by=%22ID,asc,Name,desc%22&limit=%2210%22&offset=10
+    http://localhost/~xiaoerge/http_database/index.php/get?table=City&group_by=District&having=ID%3C%3D909%26Population%21%3D111700&order_by=ID,asc,Name,desc&limit=10&offset=10
     Produces
     SELECT * FROM City GROUP BY District HAVING ID <= 909 AND Population != 1117000 ORDER BY ID ASC, Name DESC LIMIT 10, 10
 
@@ -148,12 +148,12 @@ Content Type
 
 HTTP GET JSON:
 
-    http://localhost/~xiaoerge/http_database/index.php/get?table=City&where="CountryCode=USA%26Population>=1780000"
-    http://localhost/~xiaoerge/http_database/index.php/get?table=City&where="CountryCode=USA%26Population>=1780000"&format=json
+    http://localhost/~xiaoerge/http_database/index.php/get?table=City&where=CountryCode%3DUSA%26Population>%3D1780000
+    http://localhost/~xiaoerge/http_database/index.php/get?table=City&where=CountryCode%3DUSA%26Population>%3D1780000"&format=json
 
 HTTP GET XML:
 
-    http://localhost/~xiaoerge/http_databaseindex.php/get?table=City&where="CountryCode=USA%26Population>=1780000"&format=xml
+    http://localhost/~xiaoerge/http_database/index.php/get?table=City&where=CountryCode%3DUSA%26Population>%3D1780000&format=xml
 
 This can be flaky with URI segments, so the recommend approach is using the HTTP Accept header:
 
@@ -165,7 +165,7 @@ Complex Queries
 Build complex queries by combining common queries together
 
     Combining SELECT, WHERE, NOT LIKE, GROUP BY, ORDER BY together
-    http://localhost/~xiaoerge/http_database/index.php/get?table=City&not_like=%22Name=New%22&where=%22Population%3E=100000%26CountryCode=USA%22&group_by=%22Name%22&select=%22Name,%20Population%22&order_by=%22Population,desc%22
+    http://localhost/~xiaoerge/http_database/index.php/get?table=City&not_like=Name%3DNew&where=Population%3E%3D100000%26CountryCode%3DUSA&group_by=Name&select=Name,%20Population&order_by=Population,desc
     Produces
     SELECT Name, Population FROM City WHERE Population >= 10000 AND CountryCode = USA AND Name NOT LIKE %New% GROUP BY Name ORDER BY Population DESC
 

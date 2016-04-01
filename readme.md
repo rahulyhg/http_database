@@ -42,147 +42,148 @@ Databases Supported
 * ODBC via the odbc and pdo drivers (you should know that ODBC is actually an abstraction layer)
 
 
-URL Queries (%26 is encoding of &)
-----------------------------------
+URL Queries (Partially Encoded)
+-------------------------------
 
-The URLs below are aliased by my localhost name as `localhost/~xiaoerge/http_database`.
+Live Demo (The urls below do work)
+----------------------------------
 
 SELECT *:
 
-    http://localhost/~xiaoerge/http_database/index.php/get?table=City
+    https://emz.us/http_database/index.php/get?table=City
     Produces
     SELECT * FROM City
 
 WHERE:
 
-    http://localhost/~xiaoerge/http_database/index.php/get?table=City&where=CountryCode%3DUSA%26Population%3E1780000
+    https://emz.us/http_database/index.php/get?table=City&where=CountryCode%3DUSA%26Population%3E1780000
     Produces
     SELECT * FROM City WHERE CountryCode = USA AND Population > 1780000
 
 OR WHERE (Identical of WHERE, except that multiple instances are joined by OR):
 
-    http://localhost/~xiaoerge/http_database/index.php/get?table=City&or_where=Name%21%3DNew%20York%26CountryCode%3DUSA%26Population%3E%3D1780000
+    https://emz.us/http_database/index.php/get?table=City&or_where=Name%21%3DNew%20York%26CountryCode%3DUSA%26Population%3E%3D1780000
     Produces
     SELECT * FROM City WHERE NAME != New York OR CountryCode = USA OR Population >= 1780000
 
 WHERE IN
 
-    http://localhost/~xiaoerge/http_database/index.php/get?table=City&where_in=1,2,3,4&variable=ID
+    https://emz.us/http_database/index.php/get?table=City&where_in=1,2,3,4&variable=ID
     Produces
     SELECT * FROM City WHERE ID IN(1,2,3,4)
 
 OR WHERE IN (Only supports one variable name, so this behaves similar to WHERE IN)
 
-    http://localhost/~xiaoerge/http_database/index.php/get?table=City&or_where_in=1,2,3,4&variable=ID
+    https://emz.us/http_database/index.php/get?table=City&or_where_in=1,2,3,4&variable=ID
     Produces
     SELECT * FROM City WHERE ID IN(1,2,3,4)
 
 WHERE NOT IN
 
-    http://localhost/~xiaoerge/http_database/index.php/get?table=City&where_not_in=1,2,3,4&variable=ID
+    https://emz.us/http_database/index.php/get?table=City&where_not_in=1,2,3,4&variable=ID
     Produces
     SELECT * FROM City WHERE ID NOT IN(1,2,3,4)
 
 OR WHERE NOT IN (Only supports one variable name, so this behaves similar to WHERE NOT IN)
 
-    http://localhost/~xiaoerge/http_database/index.php/get?table=City&or_where_not_in=1,2,3,4&variable=ID
+    https://emz.us/http_database/index.php/get?table=City&or_where_not_in=1,2,3,4&variable=ID
     Produces
     SELECT * FROM City WHERE ID NOT IN(1,2,3,4)
 
 JOIN (If you need a specific type of JOIN you can specify it via the `join_type` parameter in the URL. Options are: left, right, outer, inner, left outer, and right outer.)
 
-    http://localhost/~xiaoerge/http_database/index.php/get?table=Country&join=CountryLanguage.CountryCode = Country.Code&variable=CountryLanguage&join_type=right%20outer
+    https://emz.us/http_database/index.php/get?table=Country&join=CountryLanguage.CountryCode = Country.Code&variable=CountryLanguage&join_type=right%20outer
     Produces
     SELECT * FROM Country RIGHT OUTER JOIN CountryLanguage ON CountryLanguage.CountryCode = Country.Code
 
 LIKE:
 
-    http://localhost/~xiaoerge/http_database/index.php/get?table=City&like=CountryCode%3DUS
+    https://emz.us/http_database/index.php/get?table=City&like=CountryCode%3DUS
     Produces
     SELECT * FROM City WHERE CountryCode = %US%
 
 OR LIKE (This function is identical to the LIKE, except that multiple instances are joined by OR):
 
-    http://localhost/~xiaoerge/http_database/index.php/get?table=City&or_like=CountryCode%3DUS%26District%3DNew
+    https://emz.us/http_database/index.php/get?table=City&or_like=CountryCode%3DUS%26District%3DNew
     Produces
     SELECT * FROM City WHERE CountryCode = %US% OR District = %New%
 
 NOT LIKE: (Identical to LIKE, except that it generates NOT LIKE statements):
 
-    http://localhost/~xiaoerge/http_database/index.php/get?table=City&not_like=CountryCode%3DUS%26District%3DK
+    https://emz.us/http_database/index.php/get?table=City&not_like=CountryCode%3DUS%26District%3DK
     Produces
     SELECT * FROM City WHERE CountryCode != %US% AND District != %K%
 
 //Not working
 OR NOT LIKE: (Identical to OR NOT LIKE, except that multiple instances are joined by OR):
 
-    http://localhost/~xiaoerge/http_database/index.php/get?table=City&or_not_like=CountryCode%3DUS%26District%3DNew
+    https://emz.us/http_database/index.php/get?table=City&or_not_like=CountryCode%3DUS%26District%3DNew
     Produces
     SELECT * FROM City WHERE CountryCode != %US%
 
 SELECT (Field1, Field2):
 
-    http://localhost/~xiaoerge/http_database/index.php/get?table=City&select=Name,District&where=Id%3D2
+    https://emz.us/http_database/index.php/get?table=City&select=Name,District&where=Id%3D2
     Produces
     SELECT Name, District FROM City WHERE Id = 2
 
 MAX(Field):
 
-    http://localhost/~xiaoerge/http_database/index.php/get?table=City&max=Population
+    https://emz.us/http_database/index.php/get?table=City&max=Population
     Produces
     SELECT MAX(Population) FROM City
 
-MIN(Field):
+MIN(Field): (Adamstown/PCN only has 43 people?)
 
-    http://localhost/~xiaoerge/http_database/index.php/get?table=City&min=Population
+    https://emz.us/http_database/index.php/get?table=City&min=Population
     Produces
     SELECT MIN(Population) FROM City
 
 AVG(Field):
 
-    http://localhost/~xiaoerge/http_database/index.php/get?table=City&avg=Population
+    https://emz.us/http_database/index.php/get?table=City&avg=Population
     Produces
     SELECT AVG(Population) FROM City
 
 SUM(Field):
 
-    http://localhost/~xiaoerge/http_database/index.php/get?table=City&sum=Population
+    https://emz.us/http_database/index.php/get?table=City&sum=Population
     Produces
     SELECT SUM(Population) FROM City
 
 GROUP BY:
 
-    http://localhost/~xiaoerge/http_database/index.php/get?table=City&where=CountryCode%3DUSA%26Population%3E%3D178000&like=Name%3DNew&group_by=Population
+    https://emz.us/http_database/index.php/get?table=City&where=CountryCode%3DUSA%26Population%3E%3D178000&like=Name%3DNew&group_by=Population
     Produces
     SELECT FROM City WHERE CountryCode = USA AND Population >= 178000 AND  Name LIKE %New% GROUP BY Population
 
 DISTINCT:
 
-    http://localhost/~xiaoerge/http_database/index.php/get?table=City&where=CountryCode%3DUSA&distinct
+    https://emz.us/http_database/index.php/get?table=City&where=CountryCode%3DUSA&distinct
     Produces
     SELECT DISTINCT FROM City Where CountryCode = USA
 
 HAVING:
 
-    http://localhost/~xiaoerge/http_database/index.php/get?table=City&group_by=District&having=ID%3C%3D909%26Population%21%3D111700
+    https://emz.us/http_database/index.php/get?table=City&group_by=District&having=ID%3C%3D909%26Population%21%3D111700
     Produces
     SELECT FROM City GROUP BY District HAVING ID <= 909 AND Population != 111700
 
 OR HAVING (Identical of HAVING, except that multiple instances are joined by OR:):
 
-    http://localhost/~xiaoerge/http_database/index.php/get?table=City&group_by=District&or_having=ID%3C%3D909%26Population%21%3D111700
+    https://emz.us/http_database/index.php/get?table=City&group_by=District&or_having=ID%3C%3D909%26Population%21%3D111700
     Produces
     SELECT FROM City GROUP BY District HAVING ID <= 909 OR Population != 111700
 
 ORDER BY (asc, desc random):
 
-    http://localhost/~xiaoerge/http_database/index.php/get?table=City&order_by=ID,asc,Name,desc
+    https://emz.us/http_database/index.php/get?table=City&order_by=ID,asc,Name,desc
     Produces
     SELECT * FROM City ORDER BY ID ASC, NAME DESC
 
 LIMIT, OFFSET (Default 20, 0):
 
-    http://localhost/~xiaoerge/http_database/index.php/get?table=City&group_by=District&having=ID%3C%3D909%26Population%21%3D111700&order_by=ID,asc,Name,desc&limit=10&offset=10
+    https://emz.us/http_database/index.php/get?table=City&group_by=District&having=ID%3C%3D909%26Population%21%3D111700&order_by=ID,asc,Name,desc&limit=10&offset=10
     Produces
     SELECT * FROM City GROUP BY District HAVING ID <= 909 AND Population != 1117000 ORDER BY ID ASC, Name DESC LIMIT 10, 10
 
@@ -191,12 +192,12 @@ Content Type
 
 HTTP GET JSON:
 
-    http://localhost/~xiaoerge/http_database/index.php/get?table=City&where=CountryCode%3DUSA%26Population>%3D1780000
-    http://localhost/~xiaoerge/http_database/index.php/get?table=City&where=CountryCode%3DUSA%26Population>%3D1780000"&format=json
+    https://emz.us/http_database/index.php/get?table=City&where=CountryCode%3DUSA%26Population>%3D1780000
+    https://emz.us/http_database/index.php/get?table=City&where=CountryCode%3DUSA%26Population>%3D1780000"&format=json
 
 HTTP GET XML:
 
-    http://localhost/~xiaoerge/http_database/index.php/get?table=City&where=CountryCode%3DUSA%26Population>%3D1780000&format=xml
+    https://emz.us/http_database/index.php/get?table=City&where=CountryCode%3DUSA%26Population>%3D1780000&format=xml
 
 This can be flaky with URI segments, so the recommend approach is using the HTTP Accept header:
 
@@ -208,12 +209,12 @@ Complex Queries
 Build complex queries by combining common queries together
 
     Combining SELECT, WHERE, NOT LIKE, GROUP BY, ORDER BY together
-    http://localhost/~xiaoerge/http_database/index.php/get?table=City&not_like=Name%3DNew&where=Population%3E%3D100000%26CountryCode%3DUSA&group_by=Name&select=Name,%20Population&order_by=Population,desc
+    https://emz.us/http_database/index.php/get?table=City&not_like=Name%3DNew&where=Population%3E%3D100000%26CountryCode%3DUSA&group_by=Name&select=Name,%20Population&order_by=Population,desc
     Produces
     SELECT Name, Population FROM City WHERE Population >= 10000 AND CountryCode = USA AND Name NOT LIKE %New% GROUP BY Name ORDER BY Population DESC
 
     Combining SELECT, WHERE, JOIN, ORDER BY
-    http://localhost/~xiaoerge/http_database/index.php/get?table=Country&select=Code,Name&where=Code%3DUSA&join=CountryLanguage.CountryCode%20=%20Country.Code&variable=CountryLanguage&join_type=right%20outer&order_by=Code,asc&limit=1&offset=1
+    https://emz.us/http_database/index.php/get?table=Country&select=Code,Name&where=Code%3DUSA&join=CountryLanguage.CountryCode%20=%20Country.Code&variable=CountryLanguage&join_type=right%20outer&order_by=Code,asc&limit=1&offset=1
     Produces
     SELECT Code, Name FROM Country RIGHT OUTER JOIN CountryLanguage ON CountryLanguage.CountryCode = Country.Code WHERE Code = USA ORDER BY Code ASC LIMIT 1, 1
 

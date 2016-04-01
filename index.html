@@ -1,63 +1,11 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>HTTP Database by xiaoerge</title>
-
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/github-light.css">
-    <meta name="viewport" content="width=device-width">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <title>HTTP Database</title>
+    <style>html,body{width:100%;height:100%;overflow:hidden;}iframe{height:inherit;width:99%;border:none;}</style>
 </head>
 <body>
-<div class="wrapper">
-    <header>
-        <h1>HTTP Database</h1>
-        <p>Read database content via HTTP.</p>
-
-        <p class="view"><a href="https://github.com/xiaoerge/http_database">View the Project on GitHub
-            <small>xiaoerge/http_database</small>
-        </a></p>
-
-        <ul>
-            <li><a href="https://github.com/xiaoerge/http_database/zipball/master">Download <strong>ZIP
-                File</strong></a></li>
-            <li><a href="https://github.com/xiaoerge/http_database/tarball/master">Download <strong>TAR
-                Ball</strong></a></li>
-            <li><a href="https://github.com/xiaoerge/http_database">View On <strong>GitHub</strong></a></li>
-        </ul>
-    </header>
-    <section>
-        <div id="place_holder"></div>
-        <div id="preview"></div>
-    </section>
-    <footer>
-        <p>This project is maintained by <a href="https://github.com/xiaoerge">xiaoerge</a></p>
-        <p>
-            <small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a>
-            </small>
-        </p>
-    </footer>
-</div>
-<script src="javascripts/scale.fix.js"></script>
-<script src="https://code.jquery.com/jquery-1.12.2.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.3.0/showdown.min.js"></script>
-<script>
-    $(function() {
-        var $ph = $('#place_holder');
-
-        $ph.detach();
-        $ph.load('https://raw.githubusercontent.com/xiaoerge/http_database/master/readme.md', function() {
-            console.log();
-            var converter = new showdown.Converter(),
-                    html = converter.makeHtml($ph.html());
-
-            $('#preview').html(html);
-        });
-    });
-</script>
+<iframe src="https://emz.us/http_database"></iframe>
 </body>
 </html>

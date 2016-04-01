@@ -26,6 +26,7 @@ class Get_model extends CI_Model {
         $this->register_or_where_in('or_where_in');
         $this->register_or_where_not_in('or_where_not_in');
         $this->register_where_not_in('where_not_in');
+        $this->register_join('join');
         $this->register_like('like');
         $this->register_or_like('or_like');
         $this->register_not_like('not_like');
@@ -122,6 +123,15 @@ class Get_model extends CI_Model {
             $variable = $method_params[$this->get_variable_key()];
 
             $this->db->where_not_in($variable, $query_params);
+        };
+    }
+
+    private function register_join($key) {
+        $this->methods[$key] = function($method_params) {
+            $query_params = $method_params[$this->get_query_param_key()];
+            $variable = $method_params[$this->get_variable_key()];
+
+            $this->db->join($variable, $query_params[0]);
         };
     }
 

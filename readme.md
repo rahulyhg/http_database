@@ -55,7 +55,7 @@ SELECT *:
 
 WHERE:
 
-    http://localhost/~xiaoerge/http_database/index.php/get?table=City&where="CountryCode=USA%26Population>1780000"
+    http://localhost/~xiaoerge/http_database/index.php/get?table=City&where=%22CountryCode=USA%26Population%3E1780000%22
     Produces
     SELECT * FROM City WHERE CountryCode = USA AND Population > 1780000
 
@@ -67,19 +67,19 @@ OR WHERE (Identical of WHERE, except that multiple instances are joined by OR):
 
 LIKE:
 
-    http://localhost/~xiaoerge/http_database/index.php/get?table=City&like="CountryCode=US"
+    http://localhost/~xiaoerge/http_database/index.php/get?table=City&like=%22CountryCode=US%22
     Produces
     SELECT * FROM City WHERE CountryCode = %US%
 
 NOT LIKE: (Identical to LIKE, except that it generates NOT LIKE statements):
 
-    http://localhost/~xiaoerge/http_database/index.php/get?table=City&not_like="CountryCode=US"
+    http://localhost/~xiaoerge/http_database/index.php/get?table=City&not_like=%22CountryCode=US%22
     Produces
     SELECT * FROM City WHERE CountryCode != %US%
 
 SELECT (Field1, Field2):
 
-    http://localhost/~xiaoerge/http_database/index.php/get?table=City&select="Name,District"&where="Id=2"
+    http://localhost/~xiaoerge/http_database/index.php/get?table=City&select=%22Name,District%22&where=%22Id=2%22
     Produces
     SELECT Name, District FROM City WHERE Id = 2
 

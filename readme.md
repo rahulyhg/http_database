@@ -71,13 +71,29 @@ WHERE IN
     Produces
     SELECT * FROM City WHERE ID IN(1,2,3,4)
 
-OR WHERE IN (Coming)
+OR WHERE IN (Only supports one variable name, so this behaves similar to WHERE IN)
 
-WHERE NOT IN (Coming)
+    http://localhost/~xiaoerge/http_database/index.php/get?table=City&or_where_in=1,2,3,4&variable=ID
+    Produces
+    SELECT * FROM City WHERE ID IN(1,2,3,4)
 
-OR WHERE NOT IN (Coming)
+WHERE NOT IN
 
-JOIN (Coming)
+    http://localhost/~xiaoerge/http_database/index.php/get?table=City&where_not_in=1,2,3,4&variable=ID
+    Produces
+    SELECT * FROM City WHERE ID NOT IN(1,2,3,4)
+
+OR WHERE NOT IN (Only supports one variable name, so this behaves similar to WHERE NOT IN)
+
+    http://localhost/~xiaoerge/http_database/index.php/get?table=City&or_where_not_in=1,2,3,4&variable=ID
+    Produces
+    SELECT * FROM City WHERE ID NOT IN(1,2,3,4)
+
+JOIN (If you need a specific type of JOIN you can specify it via the `join_type` parameter in the URL. Options are: left, right, outer, inner, left outer, and right outer.)
+
+    http://localhost/~xiaoerge/http_database/index.php/get?table=Country&join=CountryLanguage.CountryCode = Country.Code&variable=CountryLanguage&join_type=right%20outer
+    Produces
+    SELECT * FROM Country RIGHT OUTER JOIN CountryLanguage ON CountryLanguage.CountryCode = Country.Code
 
 LIKE:
 

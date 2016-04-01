@@ -130,8 +130,9 @@ class Get_model extends CI_Model {
         $this->methods[$key] = function($method_params) {
             $query_params = $method_params[$this->get_query_param_key()];
             $variable = $method_params[$this->get_variable_key()];
+            $join_type = $method_params[$this->get_join_type_key()];
 
-            $this->db->join($variable, $query_params[0]);
+            $this->db->join($variable, $query_params[0], $join_type);
         };
     }
 
@@ -309,5 +310,9 @@ class Get_model extends CI_Model {
 
     private function get_variable_key() {
         return $this->config->item('variable_key');
+    }
+
+    private function get_join_type_key() {
+        return $this->config->item('join_type_key');
     }
 }

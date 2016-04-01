@@ -48,6 +48,7 @@ $config['level_three_queries'] = $level_three_queries;
 $config['table_key'] = 'table';
 $config['variable_key'] = 'variable';
 $config['query_param_key'] = 'query_params';
+$config['join_type_key'] = 'join_type';
 
 $config['default_query_limit'] = 20;
 $config['default_query_offset'] = 0;

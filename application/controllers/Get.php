@@ -18,6 +18,7 @@ class Get extends REST_Controller {
         $table_key = $this->config->item('table_key');
         $query_param_key = $this->config->item('query_param_key');
         $variable = $this->config->item('variable_key');
+        $join_type = $this->config->item('join_type_key');
 
         //no table name, just crash out
         if (!array_key_exists($table_key, $this->query())) {
@@ -50,7 +51,7 @@ class Get extends REST_Controller {
                     ResourceAccess::GetFromArray($lv2['required_variable'], false));
 
                 $method_params = [$table_key => $table_name, $query_param_key => $query_params,
-                    $variable => $this->query($variable)];
+                    $variable => $this->query($variable), $join_type => $this->query($join_type)];
                 $this->Get_model->chain_query($lv2['method'], $method_params);
             }
         }

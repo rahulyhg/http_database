@@ -65,15 +65,42 @@ OR WHERE (Identical of WHERE, except that multiple instances are joined by OR):
     Produces
     SELECT * FROM City WHERE NAME != New York OR CountryCode = USA OR Population >= 1780000
 
+WHERE IN
+
+    http://localhost/~xiaoerge/http_database/index.php/get?table=City&where_in=1,2,3,4&variable=ID
+    Produces
+    SELECT * FROM City WHERE ID IN(1,2,3,4)
+
+OR WHERE IN (Coming)
+
+WHERE NOT IN (Coming)
+
+OR WHERE NOT IN (Coming)
+
+JOIN (Coming)
+
 LIKE:
 
     http://localhost/~xiaoerge/http_database/index.php/get?table=City&like=CountryCode%3DUS
     Produces
     SELECT * FROM City WHERE CountryCode = %US%
 
+OR LIKE (This function is identical to the LIKE, except that multiple instances are joined by OR):
+
+    http://localhost/~xiaoerge/http_database/index.php/get?table=City&or_like=CountryCode%3DUS%26District%3DNew
+    Produces
+    SELECT * FROM City WHERE CountryCode = %US% OR District = %New%
+
 NOT LIKE: (Identical to LIKE, except that it generates NOT LIKE statements):
 
-    http://localhost/~xiaoerge/http_database/index.php/get?table=City&not_like=CountryCode%3DUS
+    http://localhost/~xiaoerge/http_database/index.php/get?table=City&not_like=CountryCode%3DUS%26District%3DK
+    Produces
+    SELECT * FROM City WHERE CountryCode != %US% AND District != %K%
+
+//Not working
+OR NOT LIKE: (Identical to OR NOT LIKE, except that multiple instances are joined by OR):
+
+    http://localhost/~xiaoerge/http_database/index.php/get?table=City&or_not_like=CountryCode%3DUS%26District%3DNew
     Produces
     SELECT * FROM City WHERE CountryCode != %US%
 
@@ -171,11 +198,16 @@ Build complex queries by combining common queries together
 
 Special Characters
 ------------------
-These character(s) need encoding if they are within quotes [HTML URL Encoding Reference](http://www.w3schools.com/tags/ref_urlencode.asp)
+These character(s) need encoding if they are in expressions
 
-    & (ampersand) eg where query, where="CountryCode=USA%26Population>=1780000"
 
-When PHP looks at `where="Name=New York&Population>100000"`, it will treat the & symbol inside quotation as a separator for HTTP parameters.
+    '& = ! < >
+    eg, where=CountryCode=USA%26Population%3E%3D1780000
+
+
+[HTML URL Encoding Reference](http://www.w3schools.com/tags/ref_urlencode.asp)
+
+When PHP looks at `where=Name=New York&Population%3E100000`, it will treat the & symbol inside quotation as a separator for HTTP parameters.
 It'll create a _GET array similar to `array('where' => '"Name=New York', 'Population' => '')`. Population is separated into another key.
 What we really wanted is having it create something like ` array('where' => '"Name=New York&Population>=1780000')`. To tell it to ignore the & symbol,
 surround the value with quotation and encode & as %26.
